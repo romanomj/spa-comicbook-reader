@@ -9,7 +9,7 @@ This assumes a directory structure where the index.html is at the root of the ap
 
 For example
 ```shell
-.               # Compiled files for production
+.                               # Root Folder
 ├── /Chapter 1/                 # First Chapter Folder
 │   ├── 1.jpg                   # First image
 │   ├── 2.jpg                   # Second image
