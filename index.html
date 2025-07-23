@@ -1,109 +1,238 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Comic Reader</title>
-<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Newsreader:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style type="text/tailwindcss">
-        :root {
-            --background-color: #F8F9FA;
-            --text-primary: #1F2937;
-            --text-secondary: #6B7280;
-            --primary-color: #000000;
-            --border-color: #E5E7EB;
-        }
+<html lang="en" class="bg-gray-900 font-sans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Reader</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles for a cleaner look */
         body {
-            font-family: 'Newsreader', serif;
+            font-family: 'Inter', sans-serif;
         }
-        .icon {
-            font-family: 'Material Icons Outlined';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
+        /* Style for disabled navigation links */
+        .disabled-link {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+        /* Simple transition for smoother view changes */
+        .view {
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
-<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
-<div class="flex flex-col min-h-screen">
-<header class="sticky top-0 z-10 bg-white/80 backdrop-blur-md shadow-sm">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex h-16 items-center justify-between">
-<div class="flex items-center gap-4">
-<svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path><path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path>
-</svg>
-<h1 class="text-xl font-bold tracking-tight">Comic Reader</h1>
-</div>
-<nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--text-secondary)]">
-<a class="hover:text-[var(--text-primary)] transition-colors" href="#">Home</a>
-<a class="hover:text-[var(--text-primary)] transition-colors" href="#">Library</a>
-<a class="hover:text-[var(--text-primary)] transition-colors" href="#">Updates</a>
-<a class="hover:text-[var(--text-primary)] transition-colors" href="#">History</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="flex items-center justify-center rounded-full h-10 w-10 text-[var(--text-secondary)] hover:bg-gray-100 hover:text-[var(--text-primary)] transition-colors">
-<span class="icon">bookmark_border</span>
-</button>
-<div class="h-10 w-10 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaO_kuHpsHBUYH4asQ9GGZLWIt3eqnfUKtazWzTnr5FjPuKjpiDYZcey9ggVqWiZvAZygL85AExswIXosx32a01bwJWs8Kh5GETWMeexUv4JmH719Lz-gXVB2x8UM-DFE9jS6cBm3PUss5wMQ4u3tnVLC6CA21DQXMjhck9EG4s0d4KCFpHziL-25_NUMQKMjbtDHItW3eW6PTozQHbVug3_kjI7drflKSeDbcfv3w9dKl67Mu9OtFZmai_8_UV1WHBRBHDvHhlbk');"></div>
-</div>
-</div>
-</div>
-</header>
-<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-<div class="max-w-4xl mx-auto">
-<div class="mb-4 text-sm text-[var(--text-secondary)]">
-<a class="hover:underline" href="#">Manga</a>
-<span>/</span>
-<span class="text-[var(--text-primary)] font-medium">One Piece</span>
-</div>
-<div class="flex justify-between items-center mb-6">
-<h2 class="text-3xl font-bold tracking-tight">Chapter 1: Romance Dawn</h2>
-<div class="flex items-center gap-2">
-<select class="form-select rounded-lg border-[var(--border-color)] focus:ring-2 focus:ring-offset-2 focus:ring-black focus:border-black text-sm">
-<option>Chapter 1</option>
-<option>Chapter 2</option>
-<option>Chapter 3</option>
-</select>
-<div class="flex items-center rounded-lg border border-[var(--border-color)]">
-<a class="p-2 text-[var(--text-secondary)] hover:bg-gray-100 rounded-l-lg transition-colors" href="#"><span class="icon">chevron_left</span></a>
-<a class="p-2 text-[var(--text-secondary)] hover:bg-gray-100 rounded-r-lg border-l border-[var(--border-color)] transition-colors" href="#"><span class="icon">chevron_right</span></a>
-</div>
-</div>
-</div>
-<div class="flex flex-col items-center gap-2">
-<img alt="Comic page 1" class="max-w-full h-auto rounded-lg shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt8BaJetuCBZ6Drx-y-51OKLUGk4aZ6FT5Z6biO8slGeKwkQHec6cDexdXye3T_oBdMeXyBKYWI93h5AAfkrodrNKvr9lTHSlN3OOJAboubEyjKTCX8OCWXKze_UAjh-agiUBbFUYb596P40C_Qai6PSGepTI8hMJULB0i5fgfZwqQ2FH80jH0Y_TA3x343sC_QAIT4Iv_SXVbg_asMs5DqOKJHQli-kx1NS9cbSdviJPaxmZ0GwLicVVBOOCoWpw5vcXnwlU5dSQ"/>
-<img alt="Comic page 2" class="max-w-full h-auto rounded-lg shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqTOrOYg9txrFVe7JA18uAJPpPO8d3WLT7zqJFhFlk5oQKTKB4F82kqKx-6MR96XHEifusxjtQ5qDT7yCT0vQ6wkqhtcBS8hH9m5Kkr-mozLseSZbtWCnIVdlVbzVKsEBmNDWuTJsT8K3FlwBnyJ0c0wPEY51b5Jo2V4YEG0dO0xXaz41l1TkDXOutWp2WOHz0UFNhis4TEIlCVto_dN6VNe9lxUkvQV8xlPxUgrzSeLVgLEPQUqg5byhJQnPu81lPTOuLcHj3YBA"/>
-<img alt="Comic page 3" class="max-w-full h-auto rounded-lg shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMFX0vfsQ4evZ73Ol-1ajF8uRx8mDRN8o69YAO73D23QdOGOqWp8Th4BDuySpuLmVp_8mQztoFtkVfOu2NKJn9gzAQ254RWpayST21ge6tRuU3awKj7dN6PDbx7zZ8Ce3fYlJ9Iga3Gx49sqXL3YAjZSN5kDVCdEiFUaSAQBWEV_4xZnlo2urcTd5i_lr4JyLgZgYe6IfX7IHP9VLJwMIJMCWonnVRsbts-uNhRvPl9-vuW874b2giguD0-57wpIdgt8HcDJxnfcs"/>
-<img alt="Comic page 4" class="max-w-full h-auto rounded-lg shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzk7sq6pFfgwW2gwxE7yhIYAhjYobdukMHJxBHd3M1ct5VD6qfQQ6nV3ImbnJiF2B-_0OJpbcd4sJpetAZOnDhS4yLwItrEpKhb0BkixZFFxWZr-pwhy41LjanSPemi8YBxMxP1ajHN2Gj5GhpBT5kFvV5JeLQLCm48I9UYlCMaW1Qp3maurffFCwJeceVztlyPrNaFJhx244gQKNJ-CVZYnPRjmIgWskNXTYfyP9HG7Ae5CFDEJjoZw42u51hY90XV49a2lxtCf4"/>
-<img alt="Comic page 5" class="max-w-full h-auto rounded-lg shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlXH6BU2-_fg7n1YFsdR6GVVgD6IN-OWtgzjCHQzdRhB5w3obW0hAcOaZ0VdjCZETzxyGjgS7hF1nkk-3mV2X2W8brhphgIy7CAtf8bvtBx4Hzik65kmbXgDajuLTvUKZ_IObTl91UnZfao3cbM6NVp_BOn11gO1bXU2w7092P6NvZYCVXhQiuAV5-L8oKzcgiQhB02F9xfpQMmkM5Um807Aw6xg7jg_pNC8gO3thkIkaRH23t12FuLycBZJmgxzgXNouKlkhLSyk"/>
-</div>
-<div class="mt-8 flex justify-between items-center">
-<a class="inline-flex items-center gap-2 px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors" href="#">
-<span class="icon">arrow_back</span>
-                        Previous Chapter
-                    </a>
-<a class="inline-flex items-center gap-2 px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors" href="#">
-                        Next Chapter
-                        <span class="icon">arrow_forward</span>
-</a>
-</div>
-</div>
-</main>
-<footer class="mt-auto py-6">
-<p class="text-center text-sm text-[var(--text-secondary)]">Powered by Comic Reader</p>
-</footer>
-</div>
+<body class="text-gray-200">
 
-</body></html>
+    <!-- Main Application Container -->
+    <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Initial Loading/Error Message -->
+        <div id="loading-view" class="text-center">
+            <h1 class="text-2xl font-bold text-gray-100">Loading Library...</h1>
+            <p class="text-lg text-gray-400 mt-2">If this message persists, please make sure you have run the chapter generation script.</p>
+        </div>
+
+        <!-- Home Page View (initially hidden) -->
+        <div id="home-view" class="view hidden">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-100">Comic Book Library</h1>
+                <p class="text-lg text-gray-400 mt-2">Select a chapter to start reading.</p>
+            </header>
+            <main>
+                <div id="chapter-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Chapter links will be dynamically inserted here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Reader Page View (initially hidden) -->
+        <div id="reader-view" class="view hidden">
+            <!-- Sticky Navigation Header -->
+            <header class="sticky top-0 bg-gray-900/80 backdrop-blur-sm z-10 py-4 mb-6 border-b border-gray-700">
+                <nav class="flex items-center justify-between">
+                    <!-- Left side: Home and Chapter Title -->
+                    <div class="flex items-center gap-4">
+                        <a href="#" id="home-link" class="text-gray-400 hover:text-blue-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                        </a>
+                        <h2 id="chapter-title" class="text-xl font-semibold text-gray-100"></h2>
+                    </div>
+                    
+                    <!-- Right side: Chapter Navigation -->
+                    <div class="flex items-center gap-2 sm:gap-4">
+                        <a href="#" id="prev-chapter-link" class="p-2 rounded-md text-gray-400 hover:bg-gray-700 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                        </a>
+                        
+                        <select id="chapter-select" class="bg-gray-800 border-gray-600 text-gray-200 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm"></select>
+                        
+                        <a href="#" id="next-chapter-link" class="p-2 rounded-md text-gray-400 hover:bg-gray-700 hover:text-white transition-colors">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </a>
+                    </div>
+                </nav>
+            </header>
+            
+            <!-- Image Container -->
+            <main id="image-container" class="max-w-4xl mx-auto">
+                <!-- Comic images will be dynamically inserted here -->
+            </main>
+        </div>
+
+    </div>
+
+    <!-- The dynamically generated list of chapters -->
+    <script src="chapters.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if the chapters variable was loaded
+            if (typeof chapters === 'undefined' || chapters.length === 0) {
+                document.getElementById('loading-view').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('loading-view').classList.add('hidden');
+
+
+            // --- DOM Element References ---
+            const homeView = document.getElementById('home-view');
+            const readerView = document.getElementById('reader-view');
+            const chapterList = document.getElementById('chapter-list');
+            const chapterTitle = document.getElementById('chapter-title');
+            const imageContainer = document.getElementById('image-container');
+            const prevChapterLink = document.getElementById('prev-chapter-link');
+            const nextChapterLink = document.getElementById('next-chapter-link');
+            const chapterSelect = document.getElementById('chapter-select');
+            const homeLink = document.getElementById('home-link');
+
+            // --- Router Function ---
+            function handleRouteChange() {
+                const hash = window.location.hash;
+
+                if (hash.startsWith('#/reader/')) {
+                    const chapterIndex = parseInt(hash.replace('#/reader/', ''), 10) - 1;
+                    if (!isNaN(chapterIndex) && chapters[chapterIndex]) {
+                        showReaderView(chapterIndex);
+                    } else {
+                        window.location.hash = '';
+                        showHomeView();
+                    }
+                } else {
+                    showHomeView();
+                }
+            }
+
+            // --- View Display Functions ---
+            function showHomeView() {
+                homeView.classList.remove('hidden');
+                readerView.classList.add('hidden');
+                
+                chapterList.innerHTML = ''; 
+                chapters.forEach((chapter, index) => {
+                    const chapterNumber = index + 1;
+                    const link = document.createElement('a');
+                    link.href = `#/reader/${chapterNumber}`;
+                    link.className = 'block p-6 bg-gray-800 rounded-lg shadow-md hover:shadow-xl hover:bg-gray-700 hover:-translate-y-1 transition-all duration-300';
+                    
+                    const title = document.createElement('h3');
+                    title.className = 'font-bold text-xl text-gray-100';
+                    title.textContent = chapter.folder;
+                    
+                    const pageCount = document.createElement('p');
+                    pageCount.className = 'text-sm text-gray-400 mt-1';
+                    pageCount.textContent = `${chapter.pages} pages`;
+
+                    link.appendChild(title);
+                    link.appendChild(pageCount);
+                    chapterList.appendChild(link);
+                });
+            }
+
+            function showReaderView(chapterIndex) {
+                homeView.classList.add('hidden');
+                readerView.classList.remove('hidden');
+
+                const chapter = chapters[chapterIndex];
+                const chapterNumber = chapterIndex + 1;
+
+                chapterTitle.textContent = chapter.folder;
+
+                if (chapterIndex > 0) {
+                    prevChapterLink.href = `#/reader/${chapterNumber - 1}`;
+                    prevChapterLink.classList.remove('disabled-link');
+                } else {
+                    prevChapterLink.href = '#';
+                    prevChapterLink.classList.add('disabled-link');
+                }
+                
+                if (chapterIndex < chapters.length - 1) {
+                    nextChapterLink.href = `#/reader/${chapterNumber + 1}`;
+                    nextChapterLink.classList.remove('disabled-link');
+                } else {
+                    nextChapterLink.href = '#';
+                    nextChapterLink.classList.add('disabled-link');
+                }
+                
+                chapterSelect.innerHTML = '';
+                chapters.forEach((chap, index) => {
+                    const option = document.createElement('option');
+                    option.value = index + 1;
+                    option.textContent = chap.folder;
+                    if (index === chapterIndex) {
+                        option.selected = true;
+                    }
+                    chapterSelect.appendChild(option);
+                });
+
+                imageContainer.innerHTML = '';
+                for (let i = 1; i <= chapter.pages; i++) {
+                    const img = document.createElement('img');
+                    const imagePath = `${chapter.folder}/${i}.${chapter.extension}`;
+                    
+                    img.src = imagePath;
+                    img.alt = `${chapter.folder} - Page ${i}`;
+                    // MODIFIED: Removed mb-1 to make images seamless
+                    img.className = 'w-full h-auto block'; 
+                    
+                    img.onerror = function() {
+                        this.onerror=null;
+                        // MODIFIED: Changed placeholder to a dark theme
+                        this.src='https://placehold.co/800x1200/212529/adb5bd?text=Image+Not+Found';
+                        this.alt = 'Image failed to load';
+                    };
+
+                    imageContainer.appendChild(img);
+                }
+                
+                window.scrollTo(0, 0);
+            }
+
+            // --- Event Listeners ---
+            window.addEventListener('hashchange', handleRouteChange);
+
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.hash = '';
+            });
+
+            chapterSelect.addEventListener('change', (e) => {
+                const newChapterNumber = e.target.value;
+                window.location.hash = `#/reader/${newChapterNumber}`;
+            });
+
+            // --- Initial Load ---
+            handleRouteChange();
+        });
+    </script>
+
+</body>
+</html>
